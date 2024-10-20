@@ -107,5 +107,10 @@ python src/nn.py
 python src/ensemble.py
 ```
 
+# Data 
 
+**The dataset used is the UCI Heart Disease Dataset**:
+
+- **Source**: Janosi, Andras, Steinbrunn, William, Pfisterer, Matthias, and Detrano, Robert. (1988). Heart Disease. UCI Machine Learning Repository. https://archive.ics.uci.edu/dataset/45/heart+disease
+- **Attributes**: The dataset includes 13 features related to heart health (age, sex, cholesterol, etc.) and a target variable indicating the presence or absence of heart disease.
 
