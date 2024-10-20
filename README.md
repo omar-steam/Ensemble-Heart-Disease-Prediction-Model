@@ -118,4 +118,4 @@ python src/ensemble.py
 
 **The following models are implemented and compared in this project**:
 
-
+**-1. K-Nearest Neigbours**:
