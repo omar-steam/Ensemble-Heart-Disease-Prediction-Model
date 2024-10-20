@@ -95,13 +95,13 @@ python src/KNN.py
 python src/svm.py
 ```
 
-- **NN (neural networks) model training**:
+- **NN (neural networks) Model training**:
 
 ```
 python src/nn.py
 ```
 
-- **Ensemble model running**:
+- **Ensemble Model running**:
 
 ```
 python src/ensemble.py
