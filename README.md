@@ -75,6 +75,15 @@ This will install all required Python packages.
 
 5. **Run the Notebook**: Once the dataset is uploaded and dependencies are installed, run the cells in the notebook sequentially to see the data preprocessing, model training, and evaluation steps.
 
+## 2. Run the Scripts
+
+You can also run individual scripts located in the ```src``` directory to train models and get predictions
+
+- Preprocess the data:
+```
+python src/preprocessing.py
+```
+
 
 
 
