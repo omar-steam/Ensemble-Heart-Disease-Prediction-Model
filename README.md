@@ -9,7 +9,7 @@ The dataset used is sourced from the UCI (University of California Irvine) Machi
 2. [Installation](#installation)
 3. [Usage](#usage)
 4. [Data](#data)
-5. [Models](#models)
+5. [The Models](#models)
 6. [Evaluation](#evaluation)
 7. [Ensemble Model](#ensemble-model)
 
@@ -113,4 +113,9 @@ python src/ensemble.py
 
 - **Source**: Janosi, Andras, Steinbrunn, William, Pfisterer, Matthias, and Detrano, Robert. (1988). Heart Disease. UCI Machine Learning Repository. https://archive.ics.uci.edu/dataset/45/heart+disease
 - **Attributes**: The dataset includes 13 features related to heart health (age, sex, cholesterol, etc.) and a target variable indicating the presence or absence of heart disease.
+
+# The Models 
+
+**The following models are implemented and compared in this project**:
+
 
