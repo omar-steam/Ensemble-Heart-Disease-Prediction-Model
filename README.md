@@ -137,6 +137,6 @@ We evaluate each model based on the following metrics:
 - **Classification Report**: Precision, Recall, and F1-Score for each class.
 
 
-Visualizations such as a heatmap of feature correlations and accuracy comparisons are included in the images/ folder.
+Visualisations such as a heatmap of feature correlations and accuracy comparisons via a bar chart are included in the ```images/``` folder.
 
 
