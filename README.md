@@ -79,13 +79,33 @@ This will install all required Python packages.
 
 You can also run individual scripts located in the ```src``` directory to train models and get predictions
 
-- Preprocess the data:
+- **Preprocess the data**:
 ```
 python src/preprocessing.py
 ```
+- **KNN (K-Nearest Neighbours) Model training**:
 
+```
+python src/KNN.py
+```
 
+- SVM (Support Vector Machines) Model training:
 
+```
+python src/svm.py
+```
+
+- **NN (neural networks) model training**:
+
+```
+python src/nn.py
+```
+
+- **Ensemble model running**:
+
+```
+python src/ensemble.py
+```
 
 
 
