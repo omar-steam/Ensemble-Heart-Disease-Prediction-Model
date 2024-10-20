@@ -118,4 +118,25 @@ python src/ensemble.py
 
 **The following models are implemented and compared in this project**:
 
-**-1. K-Nearest Neigbours**:
+**1. K-Nearest Neigbours**: A non-parametric, instance-based learning method that classifies a new sample based on the majority class of its nearest neighbors.
+We tune the ```k``` parameter to find the optimal number of neighbors.
+
+**2. Support Vector Machines**: A powerful classifier that works by finding the hyperplane that best separates the data into classes.
+We use the Radial Basis Function (RBF) kernel and tune the ```C``` parameter.
+
+**3. Neural Networks (Keras Sequential Model)**: A deep learning model consisting of multiple layers of neurons. We use a fully connected feedforward neural network with ReLU activation for hidden layers and Sigmoid activation for the output layer. The model is compiled using Sparse Categorical Crossentropy as the loss function.
+
+**4. Ensemble Model**: We combine the predictions from KNN, SVM, and the Neural Network to create an ensemble using weighted averaging. The ensemble model aims to leverage the strengths of each individual model to improve overall prediction accuracy.
+
+## Evaluation
+
+We evaluate each model based on the following metrics:
+
+- **Confusion Matrix**: To visualize the number of correct and incorrect predictions.
+- **Accuracy Score**: The percentage of correct predictions.
+- **Classification Report**: Precision, Recall, and F1-Score for each class.
+
+
+Visualizations such as a heatmap of feature correlations and accuracy comparisons are included in the images/ folder.
+
+
