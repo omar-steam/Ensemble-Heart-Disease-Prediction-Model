@@ -72,6 +72,7 @@ After running the cell, use the dialogue box to upload the heart.csv file.
 !pip install -r requirements.txt
 ```
 This will install all required Python packages.
+
 5. **Run the Notebook**: Once the dataset is uploaded and dependencies are installed, run the cells in the notebook sequentially to see the data preprocessing, model training, and evaluation steps.
 
 
