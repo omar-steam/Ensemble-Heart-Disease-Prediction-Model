@@ -288,7 +288,7 @@ metrics = ['accuracy'])
 model.fit(X_train, y_train, batch_size = 32, epochs = 100, verbose = 2),
 model.evaluate(X_test, y_test, batch_size = 32, verbose = 2)
  ```
-# ``src/ensemble.py```
+# ```src/ensemble.py```
 
  ```
 from sklearn.ensemble import VotingClassifier
