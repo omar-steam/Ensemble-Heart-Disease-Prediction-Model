@@ -180,6 +180,17 @@ from matplotlib.cm import rainbow
 import warnings
 warnings.filterwarnings('ignore')
 ```
+```
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.svm import SVC
+from sklearn.model_selection import train_test_split, RandomizedSearchCV
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.metrics import confusion_matrix,accuracy_score,roc_curve,classification_report
+from mlxtend.classifier import StackingCVClassifier
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+```
 # Loading up the dataset 
 
 ```
@@ -210,8 +221,73 @@ sns.countplot(x='target',data=df,palette='RdBu_r')
 
 # ```src/preprocessing.py```
 
+```
+dataset = pd.get_dummies(df, columns = ['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal'])
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+standardScaler = StandardScaler()
+columns_to_scale = ['age', 'trestbps', 'chol', 'thalach', 'oldpeak']
+dataset[columns_to_scale] = standardScaler.fit_transform(dataset[columns_to_scale])
+```
+```
+dataset.head()
+```
+```
+y = dataset['target']
+X = dataset.drop('target', axis = 1)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 42)
+```
+# ```src/knn.py```
 
+```
+knn_scores = []
 
+for k in range (1,40):
+  knn_classifier = KNeighborsClassifier(n_neighbors = k)
+  encoder = OneHotEncoder()
+  knn_classifier.fit(X_train, y_train)
+  knn_scores.append(knn_classifier.score(X_test, y_test))
+print(f'best choice of k:{np.argmax(knn_scores)+1}')
+
+k=8
+knn_classifier = KNeighborsClassifier(n_neighbors = k)
+knn_classifier.fit(X_train, y_train)
+y_pred = knn_classifier.predict(X_test)
+print(f'accuracy: {np.sum(y_pred==y_test)/len(y_test)}')
+```
+# ```src/svm.py```
+```
+m7 = 'Support Vector Classifier'
+svc =  SVC(kernel='rbf', C=2)
+svc.fit(X_train, y_train)
+svc_predicted = svc.predict(X_test)
+svc_conf_matrix = confusion_matrix(y_test, svc_predicted)
+svc_acc_score = accuracy_score(y_test, svc_predicted)
+print("confussion matrix")
+print(svc_conf_matrix)
+print("\n")
+print("Accuracy of Support Vector Classifier:",svc_acc_score*100,'\n')
+print(classification_report(y_test,svc_predicted))
+```
+# ```src/nn.py``` Keras Sequential Model 
+ ```
+from tensorflow import keras
+import tensorflow as tf
+from tensorflow.keras import layers
+from keras.layers import Dropout
+model = tf.keras.Sequential([layers.Dense(20, activation='relu', name='dense1'), Dropout(0.2),
+layers.Dense(25, activation='relu', name='dense2'),
+layers.Dense(45, activation='relu', name='dense3'), Dropout(0.5),
+layers.Dense(10, activation='relu', name='dense4'),
+layers.Dense(2, activation='sigmoid', name='fc1')],)
+
+from tensorflow import keras
+model.compile(loss = keras.losses.SparseCategoricalCrossentropy(from_logits = True),
+optimizer = keras.optimizers.Adam(lr = 0.001),
+metrics = ['accuracy'])
+model.fit(X_train, y_train, batch_size = 32, epochs = 100, verbose = 2),
+model.evaluate(X_test, y_test, batch_size = 32, verbose = 2)
+ ```
 
 
 
