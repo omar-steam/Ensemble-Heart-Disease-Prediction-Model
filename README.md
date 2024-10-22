@@ -139,4 +139,13 @@ We evaluate each model based on the following metrics:
 
 Visualisations such as a heatmap of feature correlations and accuracy comparisons via a bar chart are included in the ```images/``` folder.
 
+# Ensemble Model
+
+The ensemble model takes a weighted average of predictions from KNN, SVM, and the Neural Network, and then rounds the result to determine the final class label. The weights for the models are as follows:
+
+- **KNN**: 0.4
+- **SVM**: 0.3
+- **Neural Network**: 0.3
+
+
 
