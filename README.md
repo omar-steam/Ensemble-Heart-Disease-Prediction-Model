@@ -288,11 +288,109 @@ metrics = ['accuracy'])
 model.fit(X_train, y_train, batch_size = 32, epochs = 100, verbose = 2),
 model.evaluate(X_test, y_test, batch_size = 32, verbose = 2)
  ```
+# ``src/ensemble.py```
 
+ ```
+from sklearn.ensemble import VotingClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.metrics import accuracy_score
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras import layers
 
+# Assuming X_train, X_test, y_train, and y_test are defined
 
+# Create individual models
+knn_classifier = KNeighborsClassifier(n_neighbors=8)
+svc_classifier = SVC(kernel='rbf', C=2)
 
+# Train the KNN and SVC models
+knn_classifier.fit(X_train, y_train)
+svc_classifier.fit(X_train, y_train)
 
+# Define and train the neural network model
+model = tf.keras.Sequential([
+    layers.Dense(20, activation='relu'),
+    layers.Dropout(0.2),
+    layers.Dense(25, activation='relu'),
+    layers.Dense(45, activation='relu'),
+    layers.Dropout(0.5),
+    layers.Dense(10, activation='relu'),
+    layers.Dense(2, activation='sigmoid')
+])
+model.compile(loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+              optimizer=tf.keras.optimizers.Adam(lr=0.001),
+              metrics=['accuracy'])
+model.fit(X_train, y_train, batch_size=32, epochs=100, verbose=0)
+
+# Make predictions using the individual models
+knn_pred = knn_classifier.predict(X_test)
+svc_pred = svc_classifier.predict(X_test)
+nn_pred = model.predict(X_test)
+nn_pred_classes = np.argmax(nn_pred, axis=1)  # Convert probabilities to class predictions
+
+# Combine predictions using weighted average ensemble
+ensemble_pred = 0.2 * knn_pred + 0.3 * svc_pred + 0.5
+
+# Convert ensemble predictions to class labels
+ensemble_pred_classes = np.round(ensemble_pred).astype(int)
+
+# Calculate accuracy of the ensemble
+ensemble_accuracy = accuracy_score(y_test, ensemble_pred_classes)
+print("Ensemble Accuracy:", ensemble_accuracy)
+ ```
+
+# Accuracy comparison of models via a bar chart
+
+ ```
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Assuming ensemble_pred_classes, knn_predictions, svm_predictions, nn_predictions are defined
+
+# Sample data (replace this with your actual data)
+ensemble_pred_classes = np.random.randint(0, 2, size=10)
+knn_predictions = np.random.rand(10)
+svm_predictions = np.random.rand(10)
+nn_predictions = np.random.rand(10)
+
+# Normalize data to be in the range [0, 1]
+normalized_ensemble_pred = ensemble_pred_classes / max(ensemble_pred_classes)
+normalized_knn_predictions = knn_predictions / max(knn_predictions)
+normalized_svm_predictions = svm_predictions / max(svm_predictions)
+normalized_nn_predictions = nn_predictions / max(nn_predictions)
+
+# Combine all predictions for plotting
+all_predictions = [normalized_knn_predictions, normalized_svm_predictions, normalized_nn_predictions, normalized_ensemble_pred]
+algorithm_names = ['SVM', 'KNN', 'Neural Network', 'Ensemble']
+
+num_predictions = len(all_predictions)
+bar_width = 0.2
+bar_positions = np.arange(len(normalized_ensemble_pred))
+
+# Create a multi-bar graph for predictions
+for i, predictions in enumerate(all_predictions):
+    plt.bar(bar_positions + i * bar_width, predictions, width=bar_width, label=algorithm_names[i])
+
+# Add labels and title
+plt.xlabel('Sample Index')
+plt.ylabel('Normalized Class Label (Percentage)')
+plt.title('Predictions Comparison (Percentage)')
+
+# Add grid lines for better readability
+plt.grid(axis='y', linestyle='--', alpha=0.5)
+
+# Adjust y-axis ticks to represent percentages
+plt.gca().set_yticklabels(['{:.0f}%'.format(x*100) for x in plt.gca().get_yticks()])
+
+# Add legend
+plt.legend()
+
+# Show the plot
+plt.show()
+ ```
 
 
 
