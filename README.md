@@ -147,5 +147,15 @@ The ensemble model takes a weighted average of predictions from KNN, SVM, and th
 - **SVM**: 0.3
 - **Neural Network**: 0.5
 
+# Contributing
+
+You can fix this repository and submit pull requests. Contributions are welcome!
+
+# License
+This project is licensed under the. See the ```LICENSE``` file for details.
+
+
+
+
 
 
