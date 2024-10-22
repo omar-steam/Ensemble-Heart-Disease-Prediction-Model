@@ -154,6 +154,71 @@ You can fix this repository and submit pull requests. Contributions are welcome!
 # License
 This project is licensed under the Apache License 2.0. See the ```LICENSE``` file for details.
 
+### `requirements.txt`
+
+```txt
+numpy==1.23.4
+pandas==1.5.2
+scikit-learn==1.1.3
+matplotlib==3.6.2
+seaborn==0.12.1
+tensorflow==2.10.0
+mlxtend==0.19.0
+```
+# Importing Libraries and Setting Up the Environment
+
+We import the necessary libraries and configure the environment to perform data manipulation, visualization, and machine learning tasks. These libraries include tools for numerical computations, data handling, plotting, and machine learning. Additionally, we suppress warnings to ensure a cleaner output.
+
+```
+import numpy as np
+import pandas as pd
+import glob
+import matplotlib.pyplot as plt
+from matplotlib import rcParams
+from matplotlib.cm import rainbow
+%matplotlib inline
+import warnings
+warnings.filterwarnings('ignore')
+```
+# Loading up the dataset 
+
+```
+df = pd.read_csv('heart.csv')
+```
+# Creating the chart for the dataset 
+
+```
+df.info()
+
+df.describe() 
+
+import seaborn as sns
+#get correlations of each features in dataset
+corrmat = df.corr()
+top_corr_features = corrmat.index
+plt.figure(figsize=(20,20))
+#plot heat map
+g=sns.heatmap(df[top_corr_features].corr(),annot=True,cmap="RdYlGn")
+```
+```
+df.hist()
+```
+```
+sns.set_style('whitegrid')
+sns.countplot(x='target',data=df,palette='RdBu_r')
+```
+
+# ```src/preprocessing.py```
+
+
+
+
+
+
+
+
+
+
 
 
 
