@@ -34,7 +34,7 @@ Heart-Disease-Prediction/
     └── heatmap.png    # Correlation heatmap of features
     └── comparison of all algorthims used along with ensemble.png   # Accuracy comparison of models
     └── target 0 and 1.png # looking at the number of people with and without heart disease
-    └── various bar charts for alll criteria.png # plotting all the variables in each bar chart
+    └── various bar charts for alll criteria.png # plotting all the variables each bar chart
 ```
 ## Installation 
 
