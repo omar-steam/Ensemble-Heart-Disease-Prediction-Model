@@ -1,0 +1,11 @@
+m7 = 'Support Vector Classifier'
+svc =  SVC(kernel='rbf', C=2)
+svc.fit(X_train, y_train)
+svc_predicted = svc.predict(X_test)
+svc_conf_matrix = confusion_matrix(y_test, svc_predicted)
+svc_acc_score = accuracy_score(y_test, svc_predicted)
+print("confussion matrix")
+print(svc_conf_matrix)
+print("\n")
+print("Accuracy of Support Vector Classifier:",svc_acc_score*100,'\n')
+print(classification_report(y_test,svc_predicted))
