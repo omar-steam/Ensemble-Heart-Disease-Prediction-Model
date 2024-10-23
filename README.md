@@ -32,7 +32,9 @@ Heart-Disease-Prediction/
 │   ├── ensemble.py       # Ensemble model combining KNN, SVM, and Neural Network
 └── images/            # Images generated during the project (plots, heatmaps)
     └── heatmap.png    # Correlation heatmap of features
-    └── accuracy.png   # Accuracy comparison of models
+    └── comparison of all algorthims used along with ensemble.png   # Accuracy comparison of models
+    └── target 0 and 1.png # looking at the number of people with and without heart disease
+    └── various bar charts for alll criteria.png # plotting all the variables in each bar chart
 ```
 ## Installation 
 
